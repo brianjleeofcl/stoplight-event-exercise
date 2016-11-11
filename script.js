@@ -67,6 +67,19 @@
     } else {
       lightSwitch(event.target.id)
     }
-    console.log(event.target.textContent);
+
+  })
+
+})();
+
+(function() {
+  'use strict';
+
+  controls.addEventListener('click', () => {
+    const status = function (target) {
+      return target.hasAttribute('style') ? 'off' : 'on';
+    }
+
+    console.log(`${event.target.textContent} is now ${status(event.target)}.`);
   })
 })();
