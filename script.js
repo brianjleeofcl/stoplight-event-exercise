@@ -12,9 +12,6 @@
 (function() {
   'use strict';
   const controls = document.getElementById('controls');
-  const stopB = document.getElementById('stopButton');
-  const slowB = document.getElementById('slowButton');
-  const goB   = document.getElementById('goButton')
   const stopL = document.getElementById('stopLight');
   const slowL = document.getElementById('slowLight');
   const goL   = document.getElementById('goLight');
@@ -34,8 +31,8 @@
   })
 
   const lightSwitch = function(element){
-    for (const div of document.getElementById('traffic-light').children) {
-      div.removeAttribute('style');
+    for (const light of document.getElementsByClassName('bulb')) {
+      light.removeAttribute('style');
     }
     switch (element) {
       case 'stopButton':
@@ -53,6 +50,13 @@
   controls.addEventListener('click', () => {
     if (event.target === controls) {
       return;
+    }
+    if ((event.target.id === 'stopButton' && stopL.hasAttribute('style'))||(event.target.id === 'slowButton' && slowL.hasAttribute('style'))||(event.target.id === 'goButton' && goL.hasAttribute('style'))) {
+      console.log('AAA');
+      for (const light of document.getElementsByClassName('bulb')) {
+        light.removeAttribute('style');
+        console.log('BBB');
+      }
     }
     if (event.target.id === 'stopButton' && goL.hasAttribute('style')) {
       lightSwitch('slowButton');
