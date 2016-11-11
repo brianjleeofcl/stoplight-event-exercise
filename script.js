@@ -51,13 +51,16 @@
     if (event.target === controls) {
       return;
     }
-    if ((event.target.id === 'stopButton' && stopL.hasAttribute('style'))||(event.target.id === 'slowButton' && slowL.hasAttribute('style'))||(event.target.id === 'goButton' && goL.hasAttribute('style'))) {
-      console.log('AAA');
+
+    if ((event.target.id === 'stopButton' && stopL.hasAttribute('style'))
+    || (event.target.id === 'slowButton' && slowL.hasAttribute('style'))
+    || (event.target.id === 'goButton' && goL.hasAttribute('style'))) {
       for (const light of document.getElementsByClassName('bulb')) {
         light.removeAttribute('style');
-        console.log('BBB');
       }
+      return;
     }
+
     if (event.target.id === 'stopButton' && goL.hasAttribute('style')) {
       lightSwitch('slowButton');
       setTimeout(() => lightSwitch('stopButton'), 3000);
@@ -66,6 +69,4 @@
     }
     console.log(event.target.textContent);
   })
-
-
 })();
